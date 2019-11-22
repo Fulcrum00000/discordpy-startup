@@ -73,9 +73,7 @@ def findConntents(elm, pre):
             yield nx
         else:
             break
-
-    with app.app_context():
-        m.db.create_all()            
+       
 
 with app.app_context():
     m.db.create_all()        
