@@ -74,9 +74,14 @@ def findConntents(elm, pre):
         else:
             break
 
+    with app.app_context():
+        m.db.create_all()            
+
+with app.app_context():
+   m.db.create_all()        
+   m.db.session.commit()     
 if __name__ == "__main__":
     with app.app_context():
-        m.db.create_all()
         boss = m.Boss('カスパ', '([かカ][すス][パぱ])|(caspa)', '68', 6)
         m.db.session.add(boss)
         m.db.session.commit()
