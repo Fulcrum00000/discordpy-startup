@@ -5,7 +5,7 @@ insert into boss(name,fluctuation,field,pop_interval_minutes) values('マーヨ'
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('Gドレ','[g][どド][れレ]|(gdre)','',180);
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('ドレイク','[どド][れレ]|(dre)','',120);
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('ブラックエルダー','([えエ][るル][だダ])|(be)','',180);
-insert into boss(name,fluctuation,field,pop_interval_minutes) values('Gクロコ','([g][くク][ろロ][こコ])|([わワ][に二])','',180);
+insert into boss(name,fluctuation,field,pop_interval_minutes) values('クロコ','([くク][ろロ][こコ])|([わワ][に二])','',180);
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('ワーム','[わワ]ー?[むム]','',120);
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('アルフィア','[あア][るル]','',240);
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('AG','([じジ][ゃャ][いイ])|(ag)','',300);
