@@ -164,7 +164,7 @@ class Mariage:
                 schedule.status = 'end'
                 self.db.session.commit()
                 channel = self.client.get_channel(int(schedule.channel_id))
-                msg = await channel.send(schedule.boss.name + 'が湧くよ！！！End報告お待ちしております。')
+                msg = await channel.send(schedule.boss.name + 'の時間です。End報告待ってます。')
                 next_schedule = self.Schedule(msg.id, str(channel.id), schedule.boss_id)
                 next_schedule.status = 'registed'
                 next_schedule.pop_time = schedule.get_jst_pop_time()
@@ -267,7 +267,7 @@ class Mariage:
                         event = self.Event(message.channel.id)
                         self.db.session.add(event)
                         self.db.session.commit()
-                        await message.channel.send('こんどからお知らせするよっ！')
+                        await message.channel.send('次からお知らせします。')
             if message.content == '/leave_news':
                 if (not message.author.guild_permissions.administrator):
                     await message.channel.send('何様のつもり？')
@@ -330,7 +330,7 @@ class Mariage:
                                 before.status = 'end'
                                 self.db.session.commit()
                             else:
-                                await message.channel.send(boss.name + 'は未消化のリマインダーがあります。')
+                                await message.channel.send(boss.name + 'にて未消化のリマインダーがあります。')
                                 return
                         
                         if len(items) > 2:
@@ -360,7 +360,7 @@ class Mariage:
                             await msg.add_reaction('❌')
                             await __hunt_report(schedule.channel_id, schedule.id)
                         else:
-                            msg = await message.channel.send(boss.name + 'を狩るんですね！End報告お待ちしております。')
+                            msg = await message.channel.send(boss.name + 'を狩ります。End報告待ってます。')
                             schedule = self.Schedule(msg.id, str(message.channel.id), boss.id)
                             schedule.status = 'registed'
                             self.db.session.add(schedule)
