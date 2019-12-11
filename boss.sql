@@ -20,4 +20,4 @@ insert into boss(name,fluctuation,field,pop_interval_minutes) values('クライ�
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('DK','([なナ][いイ][とト])|(dk)','',420);
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('カーツ','[かカ]ー?[つツ]','',600);
 insert into boss(name,fluctuation,field,pop_interval_minutes) values('緑シャスキ','[緑][しシ][ゃャ][すス]','',120);
-insert into boss(name,fluctuation,field,pop_interval_minutes) values('青閣下','[青][でデ]ー?[もモ]|(青閣下)','',360);
+insert into boss(name,fluctuation,field,pop_interval_minutes) values('青閣下','[青][かカ][っッ][かカ]|(青閣下)','',360);
