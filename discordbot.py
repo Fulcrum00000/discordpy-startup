@@ -330,17 +330,17 @@ class Mariage:
                                 before.status = 'end'
                                 self.db.session.commit()
                             else:
-                                await message.channel.send(boss.name + 'にて未消化のリマインダーがあります。')
+                                await message.channel.send(boss.name + 'で未消化のリマインダがあります。')
                                 return
                         
                         if len(items) > 2:
                             end_time = __get_end_time(items[2], now)
                             if end_time == None:
-                                await message.channel.send('時刻が不正です。')
+                                await message.channel.send('時刻形式が不正です。')
                                 return
                             pop_time = end_time + datetime.timedelta(minutes=boss.pop_interval_minutes)
                             if pop_time < now:
-                                await message.channel.send('手遅れです。' + boss.name + 'は' + pop_time.strftime("%H:%M:%S") + 'にEndしています。')
+                                await message.channel.send('入力時刻が不正です。' + boss.name + 'は' + pop_time.strftime("%H:%M:%S") + 'にEndしています。')
                                 return
                             msg = await message.channel.send(boss.name + ' End')
                             schedule = self.Schedule(msg.id, str(message.channel.id), boss.id)
@@ -360,7 +360,7 @@ class Mariage:
                             await msg.add_reaction('❌')
                             await __hunt_report(schedule.channel_id, schedule.id)
                         else:
-                            msg = await message.channel.send(boss.name + 'を狩ります。End報告待ってます。')
+                            msg = await message.channel.send(boss.name + 'の時間です。End報告待ってます。')
                             schedule = self.Schedule(msg.id, str(message.channel.id), boss.id)
                             schedule.status = 'registed'
                             self.db.session.add(schedule)
@@ -384,6 +384,16 @@ class Mariage:
                 if end_time > now:
                     return end_time - datetime.timedelta(days=1)
                 return end_time
+            if re.match('^[0-2][0-9][0-5][0-9][0-5][0-9]$', str_date):
+                end_time = datetime.datetime.strptime(str(now.year) + '/'  +  str(now.month) + '/'+  str(now.day)+ ' ' + str_date[0:2] + ':' + str_date[2:2] + ':' + str_date[4:2] + '+0900', '%Y/%m/%d %H:%M:%S%z')
+                if end_time > now:
+                    return end_time - datetime.timedelta(days=1)
+                return end_time
+            if re.match('^[0-2][0-9][0-5][0-9]$', str_date):
+                end_time = datetime.datetime.strptime(str(now.year) + '/'  +  str(now.month) + '/'+  str(now.day)+ ' ' + str_date[0:2] + ':' + str_date[2:2] + ':00+0900', '%Y/%m/%d %H:%M:%S%z')
+                if end_time > now:
+                    return end_time - datetime.timedelta(days=1)
+                return end_time       
             if re.match('^[0-5]?[0-9]$', str_date):
                 end_time = datetime.datetime.strptime(str(now.year) + '/'  +  str(now.month) + '/'+  str(now.day) + ' ' + str(now.hour) + ':' + str_date + ':00+0900', '%Y/%m/%d %H:%M:%S%z')
                 if end_time > now:
