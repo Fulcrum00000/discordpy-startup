@@ -382,7 +382,7 @@ class Mariage:
                     return end_time - datetime.timedelta(days=1)
                 return end_time
             if re.match('^[0-2]?[0-9]:[0-5]?[0-9]$', str_date):
-　              g = re.search('^([0-2][0-9])([0-5][0-9])$', str_date).groups()
+                g = re.search('^([0-2][0-9])([0-5][0-9])$', str_date).groups()
                 end_time = datetime.datetime.strptime(str(now.year) + '/'  +  str(now.month) + '/'+  str(now.day)+ ' ' + g[0] + ':' + g[1] + ':00+0900', '%Y/%m/%d %H:%M:%S%z')
               　if end_time > now:
                     return end_time - datetime.timedelta(days=1)
