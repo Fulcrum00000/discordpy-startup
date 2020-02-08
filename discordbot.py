@@ -176,13 +176,14 @@ class Mariage:
                     await msg.add_reaction('🔄')
 
         @self.client.event
-        async def on_reaction_add(reaction, user):
+        async def on_raw_reaction_add(payload):
+            user = await self.client.fetch_user(payload.user_id)
             # リアクション送信者がBotだった場合は無視する
             if user.bot:
                 return
-            if reaction.emoji == '🔚':
+            if payload.emoji.name == '🔚':
                 with self.app.app_context():
-                    schedule = self.db.session.query(self.Schedule).filter_by(id=reaction.message.id, status='registed').first()
+                    schedule = self.db.session.query(self.Schedule).filter_by(id=payload.message_id, status='registed').first()
                     if schedule != None:
                         now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=+9)))
                         # 倒してからEND押すまでの時間を考慮して10秒ほど手前にしておく
@@ -194,19 +195,19 @@ class Mariage:
                         
                         await __hunt_report(schedule.channel_id, schedule.id)
                         __set_remind(schedule.id, pop_time, now)
-            elif reaction.emoji == '❌':
+            elif payload.emoji.name == '❌':
                 with self.app.app_context():
-                    schedule = self.db.session.query(self.Schedule).filter_by(id=reaction.message.id).filter(and_(self.Schedule.status!='end')).first()
+                    schedule = self.db.session.query(self.Schedule).filter_by(id=payload.message_id).filter(and_(self.Schedule.status!='end')).first()
                     if schedule != None:
                         if schedule.status != 'registed':
                             self.__scheduler.cancel(schedule.id)
                         schedule.status = 'end'
                         self.db.session.commit()
-                        
-                        await reaction.message.channel.send(schedule.boss.name + '討伐リマインドを取り消しました。')
-            elif reaction.emoji == '🔄':
+                        channel = await self.client.fetch_channel(payload.channel_id)
+                        await channel.send(schedule.boss.name + '討伐リマインドを取り消しました。')
+            elif payload.emoji.name == '🔄':
                 with self.app.app_context():
-                    schedule = self.db.session.query(self.Schedule).filter_by(id=reaction.message.id, status='registed').filter(self.Schedule.pop_time!=None).first()
+                    schedule = self.db.session.query(self.Schedule).filter_by(id=payload.message_id, status='registed').filter(self.Schedule.pop_time!=None).first()
                     if schedule != None:
                         pop_time = schedule.get_jst_pop_time() + datetime.timedelta(minutes=schedule.boss.pop_interval_minutes)
                         schedule.pop_time = pop_time
