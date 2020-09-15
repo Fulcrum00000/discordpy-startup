@@ -9,7 +9,7 @@ insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('ク
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('ワーム','[わワ]ー?[むム]|(わむ)','',120,true);
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('アルフィア','[あア][るル]','',240,false);
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('AG','([じジ][ゃャ][いイ])|(ag)','',300,true);
-insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('親びん','([おオ][やヤ])|(親分)','',180,false);
+insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('親分','([おオ][やヤ])|(親分)','',180,false);
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('赤シャス','[赤][しシ][ゃャ][すス]|(赤)','',120,true);
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('リカント','[りリ][かカ]','',480,true);
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('ドッペボス','[どド][っッ][ぺペ]|(どぺ)','',240,true);
