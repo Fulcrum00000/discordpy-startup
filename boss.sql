@@ -27,3 +27,4 @@ insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('上
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('左ドレ（No.49）','[ひヒ][だダ][りリ]|(左)','',120,false);
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('中ドレ（No.46）','[なナ][かカ]|(中)','',180,false);
 insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('右ドレ（No.48）','[みミ][ぎギ]|(右)','',180,false);
+insert into boss(name,fluctuation,field,pop_interval_minutes,random) values('NewGGA','(ng)','',210,true);
